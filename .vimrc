@@ -30,6 +30,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'dracula/vim'
 Plugin 'liuchengxu/space-vim-dark'
 Plugin 'connorholyday/vim-snazzy'
+Plugin 'drewtempelmeyer/palenight.vim'
 
 " python
 Plugin 'tmhedberg/SimpylFold'
@@ -47,14 +48,20 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'w0rp/ale'
 
 "" JS
+Plugin 'pangloss/vim-javascript'
 Plugin 'othree/yajs.vim'
 Plugin 'mxw/vim-jsx'
 Plugin 'leafoftree/vim-vue-plugin'
+Plugin 'mattn/emmet-vim'
+Plugin 'jparise/vim-graphql'
+Plugin 'heavenshell/vim-jsdoc'
+
+"" Typescript
 Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/tsuquyomi'
-Plugin 'prettier/vim-prettier'
-Plugin 'mattn/emmet-vim'
 
+"" PHP
+Plugin 'StanAngeloff/php.vim'
 
 call vundle#end()            " required
 
@@ -88,8 +95,8 @@ let g:ale_linters = {
 \}
 let g:ale_fixers = {
   \    'python': ['yapf'],
-  \    'javascript': ['eslint'],
-  \    'vue': ['eslint'],
+  \    'javascript': ['prettier'],
+  \    'vue': ['prettier'],
   \    'scss': ['prettier'],
   \    'html': ['prettier'],
   \    'reason': ['refmt']
@@ -99,6 +106,7 @@ nmap <F10> :ALEFix<CR>
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
 
+let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
 let g:vim_vue_plugin_load_full_syntax = 1
 
@@ -160,11 +168,13 @@ au FileType html setlocal formatprg=js-beautify\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
-autocmd BufEnter *.js,*.vue,*.html,*.ts colorscheme snazzy
+"autocmd BufEnter *.js,*.vue,*.html,*.ts set background=dark colorscheme palenight
 au BufNewFile,BufRead *.js,*.html,*.css,*.vue,*.ts
 	\ set tabstop=2 |
 	\ set softtabstop=2 |
-	\ set shiftwidth=2
+	\ set shiftwidth=2 |
+	\ set expandtab |
+	\ set autoindent 
 autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
 
 "" YAML
@@ -183,3 +193,6 @@ let g:user_emmet_settings = {
 let g:ale_sign_error = '●' " Less aggressive than the default '>>'
 let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+"" LEHRE
+let g:jsdoc_lehre_path = '/Users/kelvin/vim-jsdoc/lib/node_modules/.bin/lehre'

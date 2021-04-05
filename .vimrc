@@ -65,6 +65,13 @@ Plugin 'StanAngeloff/php.vim'
 
 call vundle#end()            " required
 
+"" DART + FLUTTER
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'natebosch/vim-lsc'
+Plugin 'natebosch/vim-lsc-dart'
+Plugin 'neoclide/coc.nvim'
+
+
 "minimal for nerdtree"
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
@@ -91,11 +98,13 @@ set rtp+=/usr/local/opt/fzf
 let g:ale_linters = {
 \   'python': ['flake8', 'pylint'],
 \   'javascript': ['eslint'],
+\   'typescript': ['eslint'],
 \   'vue': ['eslint']
 \}
 let g:ale_fixers = {
   \    'python': ['yapf'],
   \    'javascript': ['prettier'],
+  \    'typescript': ['prettier'],
   \    'vue': ['prettier'],
   \    'scss': ['prettier'],
   \    'html': ['prettier'],
@@ -145,7 +154,6 @@ vmap '' :w !pbcopy<CR><CR>
 "" PYTHON
 let python_highlight_all=1
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
-let g:syntastic_python_python_exec = '/usr/bin/python3' "fix typehint
 "autocmd BufWritePre *.py execute ':Black'
 
 
@@ -169,7 +177,7 @@ au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
 autocmd BufRead,BufNewFile *.vue setlocal filetype=vue
 "autocmd BufEnter *.js,*.vue,*.html,*.ts set background=dark colorscheme palenight
-au BufNewFile,BufRead *.js,*.html,*.css,*.vue,*.ts
+au BufNewFile,BufRead *.js,*.html,*.css,*.vue,*.ts,*.dart
 	\ set tabstop=2 |
 	\ set softtabstop=2 |
 	\ set shiftwidth=2 |
@@ -195,4 +203,10 @@ let g:ale_sign_warning = '.'
 let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 
 "" LEHRE
-let g:jsdoc_lehre_path = '/Users/kelvin/vim-jsdoc/lib/node_modules/.bin/lehre'
+let g:jsdoc_lehre_path = '/usr/local/lib/node_modules/lehre/bin/lehre'
+
+"" DART SPECIFIC
+let dart_html_in_string=v:true
+let g:dart_style_guide = 2
+let g:dart_format_on_save = 1
+

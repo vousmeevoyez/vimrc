@@ -96,7 +96,7 @@ set noshowmode
 set rtp+=/usr/local/opt/fzf
 
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8', 'pylint', 'mypy'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'vue': ['eslint']
@@ -209,4 +209,3 @@ let g:jsdoc_lehre_path = '/usr/local/lib/node_modules/lehre/bin/lehre'
 let dart_html_in_string=v:true
 let g:dart_style_guide = 2
 let g:dart_format_on_save = 1
-

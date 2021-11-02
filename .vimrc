@@ -9,10 +9,10 @@ filetype plugin indent on    " required
 
 "split navigation
 "
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+"nnoremap <C-J> <C-W><C-J>
+"nnoremap <C-K> <C-W><C-K>
+"nnoremap <C-L> <C-W><C-L>
+"nnoremap <C-H> <C-W><C-H>
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -41,6 +41,7 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'psf/black'
+Plugin 'heavenshell/vim-pydocstring', { 'do': 'make install', 'for': 'python' }
 
 " AIRLINE
 Plugin 'vim-airline/vim-airline'
@@ -96,13 +97,13 @@ set noshowmode
 set rtp+=/usr/local/opt/fzf
 
 let g:ale_linters = {
-\   'python': ['flake8', 'pylint', 'mypy'],
+\   'python': ['flake8', 'mypy'],
 \   'javascript': ['eslint'],
 \   'typescript': ['eslint'],
 \   'vue': ['eslint']
 \}
 let g:ale_fixers = {
-  \    'python': ['yapf'],
+  \    'python': ['autopep8','isort'],
   \    'javascript': ['prettier'],
   \    'typescript': ['prettier'],
   \    'vue': ['prettier'],
@@ -110,6 +111,7 @@ let g:ale_fixers = {
   \    'html': ['prettier'],
   \    'reason': ['refmt']
 \}
+
 nmap <F10> :ALEFix<CR>
 
 let g:tsuquyomi_disable_quickfix = 1
@@ -130,6 +132,8 @@ let g:ycm_global_ycm_extra_conf = '~/global_extra_conf.py'
 nnoremap gtd :YcmCompleter GoToDefinition<CR>
 nnoremap gtr :YcmCompleter GoToReferences<CR>
 nnoremap gt :YcmCompleter GoTo<CR>
+let g:pydocstring_formatter = 'numpy'
+let g:pydocstring_doq_path = '/Users/kelvindesman/.pyenv/shims/doq'
 
 " The Silver Searcher
 if executable('ag')

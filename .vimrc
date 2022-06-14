@@ -99,13 +99,13 @@ set rtp+=/usr/local/opt/fzf
 let g:ale_linters = {
 \   'python': ['flake8', 'mypy'],
 \   'javascript': ['eslint'],
-\   'typescript': ['eslint'],
+\   'typescript': ['eslint', 'deno'],
 \   'vue': ['eslint']
 \}
 let g:ale_fixers = {
   \    'python': ['autopep8','isort'],
   \    'javascript': ['prettier'],
-  \    'typescript': ['prettier'],
+  \    'typescript': ['prettier', 'deno'],
   \    'vue': ['prettier'],
   \    'scss': ['prettier'],
   \    'html': ['prettier'],
@@ -113,6 +113,10 @@ let g:ale_fixers = {
 \}
 
 nmap <F10> :ALEFix<CR>
+nmap gr <Plug>(ale_rename)
+nmap gR <Plug>(ale_find_reference)
+nmap gd <Plug>(ale_go_to_definition)
+nmap gD <Plug>(ale_go_to_type_definition)
 
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
@@ -187,7 +191,8 @@ au BufNewFile,BufRead *.js,*.html,*.css,*.vue,*.ts,*.dart
 	\ set shiftwidth=2 |
 	\ set expandtab |
 	\ set autoindent 
-autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+""autocmd BufNewFile,BufRead *.ts setlocal filetype=typescript
+autocmd FileType typescript set omnifunc=ale#completion#OmniFunc
 
 "" YAML
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
